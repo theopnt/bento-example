@@ -1,5 +1,5 @@
 # bentofile.yaml - 2.0
-service: "service.py:lgbm_uc6_w6_pos_ac_service" 
+service: "service.py:model_service" 
 description: "file: ./README.md"
 labels:
     owner: theopnt
@@ -9,7 +9,7 @@ include:
 python:
   packages:
     - cloudpickle==2.0.0
-    - torch==1.11.0
+    - torch==1.12.0
     - starlette==0.20.0
     - mlflow==1.25.1
     - pandas==1.5.3
@@ -17,7 +17,7 @@ python:
     - pretty-errors==1.2.25
     - PyYAML==6.0
     - numpy==1.23.5
-    - click==8.1.2
+    - click==8.1.3
     - protobuf==3.20.0
     - lightgbm==3.3.2
     - requests_toolbelt
