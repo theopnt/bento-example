@@ -1,0 +1,20 @@
+# bentofile.yaml - 2.0
+service: "service.py:lgbm_italy_service" 
+description: "file: ./README.md"
+labels:
+    owner: ENG-ICCS
+    stage: demo
+include:
+ - "*.py"  # A pattern for matching which files to include in the bento
+python:
+  packages:
+    - starlette==0.22.0
+    - mlflow==1.27.0
+    - pandas==1.5.3
+    - u8darts[torch]==0.22.0
+    - pretty-errors==1.2.25
+    - PyYAML==6.0
+    - numpy==1.23.5
+    - click==8.1.2
+    - protobuf==3.20.0
+    - requests_toolbelt
