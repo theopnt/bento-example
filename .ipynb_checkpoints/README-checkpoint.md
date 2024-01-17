@@ -1,15 +1,41 @@
-LightGBM regression model for Use Case 2. The model was trained on Italy's national 1-hour resolution load time series. 
+This repository contains an example of model serving with bento.
 
-The training set starts on 2015-04-09 and ends on 2019-12-31. The timeseries from 2020-01-01 to 2020-12-31 is considered as the validation set, and from 2021-01-01 to 2022-01-01 as the test set.
+To serve your model you must first have bento installed in your system.
 
-The model's parameters that were used are:
-    
-lags: 216 (that is the lookback window, which is the minimum size of timeseries that can be given to the model as input)
-lags_past_covariates : null 
-lags_future_covariates : None 
-future_covs_as_tuple : True 
-random_state : 0 
+Run the notebook save_model_as_bento.ipynb to save your model from mlflow as a bento. This notebook also contains code that checks if
+the model is providing predictions as expected.
 
-For more information check the darts documentation: https://unit8co.github.io/darts/generated_api/darts.models.forecasting.lgbm.html
+Then, service.py may need some changes. This is the python file that defines the api of the model. If your model is the same type as this example
+(global forecasting model for UC7), then you only need to change the model's name in the definition of the runner.
 
-The forecast horizon used during evaluation was 24 hours, and it was performed using backtesting: https://unit8co.github.io/darts/generated_api/darts.models.forecasting.lgbm.html#darts.models.forecasting.lgbm.LightGBMModel.historical_forecasts. Code used for evaluation is in the folder named model_evaluation.
+bentofile.yaml describes the container to be created for the bento. If your model is the same type as this example
+(global forecasting model for UC7), then nothing needs to be changed here. 
+
+After that, we run the serving notebook to test the service without docker. That is in order to check that it is working. After the user
+has run the final instruction of this notebook, they must run prediction_examples.ipynb to make a prediction for the example files provided.
+
+After all our testing, we can make a docker container for our service. All the following commands have been tested in the enviroment of jupyterlab.
+If you run this on your machine, you have to use the second command. 
+
+We open the terminal in the folder of this repository, and run:
+
+```/opt/anaconda3/bin/bentoml build``` (jupyterlab)
+
+or 
+
+```bentoml build``` (local machine)
+
+This command builds the service in this repository. The resulting tag of the bento (here uc7_companies_no_covs:example)
+will be needed for the later commands. We then run:
+
+```sudo su```
+
+```export BENTOML_HOME=/new_vol_300/marija/conda/multiusers/iccs/bentoml``` (This command is needed only for jupyterlab)
+
+```bentoml containerize uc7_companies_no_covs:example```
+
+This command builds the docker container.
+
+```docker run -it --rm -p 3060:3000 uc7_companies_no_covs:example```
+
+This command runs the docker container.

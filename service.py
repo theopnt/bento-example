@@ -7,7 +7,8 @@ from bentoml.io import Text
 from bentoml.io import Multipart
 from bentoml.exceptions import BentoMLException
      
-# Load the runner for the latest model we just saved
+#Load the runner for the latest model we just saved
+#Use the same name that you used to save your model to bento
 model_runner = bentoml.mlflow.get("uc7_companies_no_covs:latest").to_runner()
 
 #creating the service for the model. We can name it whatever we wish
