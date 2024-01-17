@@ -1,7 +1,7 @@
 This repository contains an example of model serving with bento.
 
 After cloning the repo, you should install the requirements:
-```pip install -r requirements.txt``
+```pip install -r requirements.txt```
 
 Then, run the notebook save_model_as_bento.ipynb to save your model from mlflow as a bento. This notebook also contains code that checks if
 the model is providing predictions as expected.
