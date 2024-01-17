@@ -33,7 +33,11 @@ will be needed for the later commands. Then, run:
 
 ```sudo su```
 
-```export BENTOML_HOME=/new_vol_300/marija/conda/multiusers/iccs/bentoml``` (This command is needed only for jupyterlab)
+```export BENTOML_HOME=/new_vol_300/marija/conda/multiusers/iccs/bentoml``` (jupyterlab)
+
+or 
+
+```export BENTOML_HOME=path/to/user/bentoml``` (local machine)
 
 ```bentoml containerize uc7_companies_no_covs:example```
 
