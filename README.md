@@ -39,6 +39,7 @@ or
 
 ```export BENTOML_HOME=path/to/user/bentoml``` (local machine)
 
+
 ```bentoml containerize uc7_companies_no_covs:example```
 
 This command builds the docker container.
