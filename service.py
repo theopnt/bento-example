@@ -9,7 +9,7 @@ from bentoml.exceptions import BentoMLException
      
 #Load the runner for the latest model we just saved
 #Use the same name that you used to save your model to bento
-model_runner = bentoml.mlflow.get("uc7_companies_no_covs:latest").to_runner()
+model_runner = bentoml.mlflow.get("uc7_companies_no_covs:hurwbr5vq6ituabl").to_runner()
 
 #creating the service for the model. We can name it whatever we wish
 model_service = bentoml.Service("uc7_companies_no_covs", runners=[model_runner])
